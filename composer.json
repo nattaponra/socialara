@@ -1,0 +1,11 @@
+{
+    "name": "nattaponra/socialara",
+    "description": "Library for easy develop social application authen.",
+    "authors": [
+        {
+            "name": "Nattapon Rakthong",
+            "email": "nattapon.rakthong@gmail.com"
+        }
+    ],
+    "require": {}
+}
