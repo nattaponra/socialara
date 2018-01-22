@@ -34,21 +34,20 @@ class SocialLaraController extends Controller
         $users         = $this->userModel->where("email",$userData["email"]);
         $finalUser     = $users;
         $avatarContent = file_get_contents($facebook->avatar_original);
+
         if($results->count()== 0){
 
             if($users->count() == 0){
                 //create new user
-                $user               = new User();
-                $user->name         = $userData["name"];
-                $user->user_type_id = 2;
-                $user->email        = $userData["email"];
-                $user->password     = bcrypt($this->randomPassword(30));
+                $user                   = new User();
+                $user->name             = $userData["name"];
+                $user->email            = $userData["email"];
+                $user->password         = bcrypt($this->randomPassword(30));
                 $user->avatar_content   = $avatarContent;
                 $user->avatar_extension = "png";
                 $user->save();
-
-                $user_id            = $user->id;
-                $finalUser          = $user;
+                $user_id                = $user->id;
+                $finalUser              = $user;
 
             }else{
                 $user_id = $users->first()->id;
@@ -68,11 +67,10 @@ class SocialLaraController extends Controller
         }else{
             $user_id     = $results->first()->user_id;
             $finalUser   = $this->userModel->where("id",$user_id);
-
         }
 
         //Update avatar
-        $finalUser->update(["avatar_content"=>$avatarContent,"avatar_extension"=>"png"]);
+        $finalUser->update(["avatar_content" => $avatarContent ,"avatar_extension" => "png"]);
 
         if (Auth::loginUsingId($finalUser->first()->id)) {
             return redirect("/");
@@ -90,6 +88,7 @@ class SocialLaraController extends Controller
         $google        = Socialite::driver('google')->user();
         $userData      = $google->user;
         $userEmail     = "";
+        
         foreach ($userData["emails"] as $email) {
             $userEmail = $email["value"];
             break;
@@ -104,19 +103,15 @@ class SocialLaraController extends Controller
 
             if($users->count() == 0){
                 //create new user
-                $user                = new User();
-                $user->name          = $userData["displayName"];
-                $user->first_name    = $userData["name"]["givenName"];
-                $user->last_name     = $userData["name"]["familyName"];
-                $user->user_type_id  = 2;
-                $user->email         = $userEmail;
-                $user->password      = bcrypt($this->randomPassword(30));
+                $user                   = new User();
+                $user->name             = $userData["displayName"];
+                $user->email            = $userEmail;
+                $user->password         = bcrypt($this->randomPassword(30));
                 $user->avatar_content   = $avatarContent;
                 $user->avatar_extension = "png";
                 $user->save();
-
-                $user_id            = $user->id;
-                $finalUser          = $user;
+                $user_id                = $user->id;
+                $finalUser              = $user;
 
             }else{
                 $user_id = $users->first()->id;
@@ -140,7 +135,8 @@ class SocialLaraController extends Controller
         }
 
         //Update avatar
-        $finalUser->update(["avatar_content"=>$avatarContent,"avatar_extension"=>"png"]);
+        $finalUser->update(["avatar_content" => $avatarContent ,"avatar_extension" => "png"]);
+
 
         if (Auth::loginUsingId($finalUser->first()->id)) {
             return redirect("/");
@@ -153,6 +149,7 @@ class SocialLaraController extends Controller
         $alphabet    = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         $pass        = array(); //remember to declare $pass as an array
         $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+
         for ($i = 0; $i < $length; $i++) {
             $n      = rand(0, $alphaLength);
             $pass[] = $alphabet[$n];
