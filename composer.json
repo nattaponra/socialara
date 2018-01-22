@@ -7,5 +7,7 @@
             "email": "nattapon.rakthong@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "laravel/socialite": "^3.0"
+    }
 }
