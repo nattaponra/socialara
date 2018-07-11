@@ -42,10 +42,10 @@ class FacebookProvider extends AbstractProvider implements Provider
 
     public function callback(Request $request)
     {
-        $accessToken = $request->input("accessToken");
+        $helper = $this->facebook->getRedirectLoginHelper();
 
         try {
-
+            $accessToken = $helper->getAccessToken();
             $response       = $this->facebook->get('/me?fields=id,name,email', $accessToken);
             $data           = $response->getDecodedBody();
             $data["status"] =  true;

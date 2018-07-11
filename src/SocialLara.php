@@ -34,11 +34,11 @@ class SocialLara extends Model
         return $this->getProvider($providerName)->redirectLogin();
     }
 
-    public function existUser($email){
+    public function userExist($email){
         return User::where("email",$email)->count() == 1;
     }
 
-    public function existSocialLara($email,$providerName){
+    public function  socialLaraExist($email,$providerName){
         return $this->where("email",$email)->where("provider",$providerName)->count() == 1;
     }
 
@@ -49,7 +49,7 @@ class SocialLara extends Model
 
         if($result["status"]){
 
-            if($this->existUser($result["email"])){
+            if($this->userExist($result["email"])){
                 $user = User::where("email",$result["email"])->first();
 
             }else{
@@ -61,7 +61,7 @@ class SocialLara extends Model
                 ]);
             }
 
-            if($this->existSocialLara($result["email"], $this->provider->providerName())){
+            if($this->socialLaraExist($result["email"], $this->provider->providerName())){
 
             }else{
                 $sociallara = new SocialLara();
@@ -76,8 +76,10 @@ class SocialLara extends Model
             Auth::login($user);
             $accessToken = Auth::user()->createToken("App");
             return ["status" => true ,"accessToken" => $accessToken];
+
         }else{
 
+            return ["status" => false ,"accessToken" => ""];
         }
     }
 
