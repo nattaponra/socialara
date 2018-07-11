@@ -1,6 +1,6 @@
 <?php
 
-namespace nattaponra\socialara;
+namespace nattaponra\sociallara;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +13,9 @@ class SocialLaraServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__.'/migrations');
+         $this->loadRoutesFrom(__DIR__.'/routes/routes.php');
+
+         $this->loadMigrationsFrom(__DIR__.'/database/migrations');
 
          $this->publishes([__DIR__.'/config/config.php' => config_path('sociallara.php'),]);
     }
@@ -25,6 +27,9 @@ class SocialLaraServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+
+        $this->app->singleton('sociallara', function () {
+            return new SocialLara();
+        });
     }
 }

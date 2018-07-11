@@ -1,7 +1,10 @@
 <?php
+namespace nattaponra\sociallara\Providers;
 
+use Illuminate\Http\Request;
 
 interface Provider
 {
-    public function callback();
+    public function callback(Request $request);
+
 }

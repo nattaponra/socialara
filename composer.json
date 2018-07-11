@@ -1,5 +1,5 @@
 {
-    "name": "nattaponra/socialara",
+    "name": "nattaponra/sociallara",
     "description": "Library for easy develop social application authentication.",
     "authors": [
         {
@@ -7,9 +7,14 @@
             "email": "nattapon.rakthong@gmail.com"
         }
     ],
-    "require": {  },
-    "psr-4": {"nattaponra\\socialara\\": "src/"},
-    "classmap":[
-        "src/database/migrations"
-    ]
+    "require": {
+        "facebook/graph-sdk": "^5.6"
+    },
+
+    "autoload": {
+        "psr-4": {"nattaponra\\sociallara\\": "src/"},
+        "classmap":[
+            "src/database/migrations"
+        ]
+    }
 }

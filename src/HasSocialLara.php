@@ -1,5 +1,5 @@
 <?php
-namespace nattaponra\socialara;
+namespace nattaponra\sociallara;
 
 trait SocialLara
 {
