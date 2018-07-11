@@ -10,4 +10,9 @@ class GoogleProvider implements Provider
     {
        echo "Hi Google";
     }
+
+    public function redirectLogin()
+    {
+        // TODO: Implement redirectLogin() method.
+    }
 }

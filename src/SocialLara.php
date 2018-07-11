@@ -4,7 +4,6 @@ namespace nattaponra\sociallara;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use nattaponra\sociallara\Providers\FacebookProvider;
@@ -29,6 +28,10 @@ class SocialLara extends Model
         }
 
         return null;
+    }
+
+    public function redirectLogin($providerName){
+        return $this->getProvider($providerName)->redirectLogin();
     }
 
     public function existUser($email){
