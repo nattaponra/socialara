@@ -17,14 +17,13 @@ class CreateSocialLarasTable extends Migration
         Schema::create('social_laras', function (Blueprint $table) {
             $table->increments('id');
             $table->integer("user_id")->index();
-            $table->string("platform")->index();
-            $table->string("platform_id")->index();
+            $table->string("provider")->index();
+            $table->string("provider_id")->index();
             $table->string("email")->index();
-            $table->string("token")->index();
-            $table->string("avatar_extension");
+            $table->text("avatar_path");
             $table->timestamps();
         });
-        DB::statement("ALTER TABLE social_laras ADD avatar_content LONGBLOB NULL");
+
     }
 
     /**
