@@ -1,13 +1,15 @@
 {
     "name": "nattaponra/socialara",
-    "description": "Library for easy develop social application authen.",
+    "description": "Library for easy develop social application authentication.",
     "authors": [
         {
             "name": "Nattapon Rakthong",
             "email": "nattapon.rakthong@gmail.com"
         }
     ],
-    "require": {
-        "laravel/socialite": "^3.0"
-    }
+    "require": {  },
+    "psr-4": {"nattaponra\\socialara\\": "src/"},
+    "classmap":[
+        "src/database/migrations"
+    ]
 }
