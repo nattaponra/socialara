@@ -17,7 +17,7 @@ class FacebookProvider extends AbstractProvider implements Provider
         $config = [
             'app_id'     => config("sociallara.providers.facebook.client_id",null),
             'app_secret' => config("sociallara.providers.facebook.client_secret",null),
-            'default_graph_version' => 'v2.3',
+            'default_graph_version' => 'v2.10',
         ];
 
         try {
@@ -43,6 +43,10 @@ class FacebookProvider extends AbstractProvider implements Provider
     public function callback(Request $request)
     {
         $helper = $this->facebook->getRedirectLoginHelper();
+
+        if (!empty($request->input("state"))) {
+            $helper->getPersistentDataHandler()->set('state',$request->input("state"));
+        }
 
         try {
             $accessToken = $helper->getAccessToken();

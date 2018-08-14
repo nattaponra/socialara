@@ -1,6 +1,6 @@
 {
     "name": "nattaponra/sociallara",
-    "description": "Library for easy develop social application authentication.",
+    "description": "Sociallara is a library that will help you fast develop social authentication.",
     "authors": [
         {
             "name": "Nattapon Rakthong",
@@ -8,7 +8,7 @@
         }
     ],
     "require": {
-        "facebook/graph-sdk": "^5.6"
+ 
     },
 
     "autoload": {

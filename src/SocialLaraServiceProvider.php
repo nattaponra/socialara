@@ -13,7 +13,6 @@ class SocialLaraServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-         $this->loadRoutesFrom(__DIR__.'/routes/routes.php');
 
          $this->loadMigrationsFrom(__DIR__.'/database/migrations');
 
@@ -29,7 +28,7 @@ class SocialLaraServiceProvider extends ServiceProvider
     {
 
         $this->app->singleton('sociallara', function () {
-            return new SocialLara();
+            return new SocialLara(new ProviderFactory());
         });
     }
 }
